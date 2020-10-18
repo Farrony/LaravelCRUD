@@ -15,6 +15,13 @@
                     @endif
 
                     <h2>Profile</h2>
+                    <form action="{{route('upload.avatar')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <input type="file" name="avatar">
+                            <button type="submit">Upload</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

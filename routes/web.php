@@ -23,9 +23,10 @@ Auth::routes();
 //     return view('post.profile');
 // })->middleware(['auth','email_verified']);  // multiple middleware
 
-Route::group(['middleware' => ['auth','email_verified']], function () {
-    Route::get('/profile', 'App\Http\Controllers\HomeController@profile');
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->withoutMiddleware('email_verified');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/profile', 'App\Http\Controllers\HomeController@profile')->name('profile');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); //->withoutMiddleware('email_verified')
+    Route::post('/upload-avatar', [App\Http\Controllers\HomeController::class, 'uploadAvatar'])->name('upload.avatar');
 });
 
 // Route::get('/profile', 'App\Http\Controllers\HomeController@profile');
